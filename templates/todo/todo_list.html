@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Todo list{% endblock %}
+
+{% block content %}
+
+    {% if todoes %}
+        {% for todo in todoes %}
+
+            <div class="border rounded p-3 my-2">
+
+                <div class="fs-5 fw-semibold">
+                    <a href="{{ todo.get_absolute_url }}"
+                       class="link-{% if todo.is_completed %}success{% else %}dark{% endif %}">
+                        {{ todo.name }}
+                    </a>
+                </div>
+                <div>{{ todo.description }}</div>
+                <div>
+                    {% if todo.is_completed %}
+                        Completed
+                    {% else %}
+                        Complete before {{ todo.complete_before|date:'j E Y, H:i' }}
+                    {% endif %}
+                </div>
+                <div class="text-secondary">Created at {{ todo.created_at|date:'j E Y' }}</div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="fs-5 fw-semibold">No todoes</div>
+    {% endif %}
+
+{% endblock %}
