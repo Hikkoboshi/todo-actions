@@ -20,7 +20,7 @@ from django.urls import path
 from todo.views import TodoList, TodoDetail
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', TodoList.as_view(), name='main'),
-    path('<pk>', TodoDetail.as_view(), name='todo_detail'),
+    path("admin/", admin.site.urls),
+    path("", TodoList.as_view(), name="main"),
+    path("<pk>", TodoDetail.as_view(), name="todo_detail"),
 ]
