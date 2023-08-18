@@ -1,7 +1,7 @@
 name: Sync branches after tests
 on:
   workflow_run:
-    workflows: [Lint, Run tests]
+    workflows: ["Lint", "Run tests"]
     types:
       - completed
 
