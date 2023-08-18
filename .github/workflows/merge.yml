@@ -1,11 +1,12 @@
 name: Sync branches after tests
 on:
-  push:
-    branches:
-      - dev
+  workflow_run:
+    workflows: ["Lint", "Run Tests"]
+    branches: [dev]
+    types:
+      - completed
 jobs:
   sync-branch:
-    needs: [lint, tests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
