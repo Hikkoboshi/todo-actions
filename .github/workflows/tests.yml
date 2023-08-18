@@ -1,7 +1,8 @@
 name: Run tests
 on:
   workflow_run:
-    workflows: ["Lint"]
+    workflows: [Lint]
+    branches: [dev]
     types:
       - completed
 jobs:
