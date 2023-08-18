@@ -1,0 +1,19 @@
+name: Sync branches after tests
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  sync-branch:
+    needs: [lint, tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Merge development -> staging
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: dev
+          target_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
