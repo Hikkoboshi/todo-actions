@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Todo list{% endblock %}
+
+{% block content %}
+
+    {% if todo %}
+
+            <div class="border rounded p-3 my-2">
+
+                <div class="fs-5 fw-semibold">
+                       class="link-{% if todo.is_completed %}success{% else %}dark{% endif %}">
+                        {{ todo.name }}
+                </div>
+                <div>{{ todo.description }}</div>
+                <div>
+                    {% if todo.is_completed %}
+                        Completed
+                    {% else %}
+                        Complete before {{ todo.complete_before|date:'j E Y, H:i' }}
+                    {% endif %}
+                </div>
+                <div class="text-secondary">Created at {{ todo.created_at|date:'j E Y' }}</div>
+
+            </div>
+    {% else %}
+        <div class="fs-5 fw-semibold">Oh no! There's no Todo or smth went wrong...</div>
+    {% endif %}
+
+{% endblock %}
