@@ -1,5 +1,9 @@
 name: Run tests
-on: push
+on:
+  workflow_run:
+    workflows: ["Lint"]
+    types:
+      - completed
 jobs:
   tests:
     name: Install requirements and execute tests
